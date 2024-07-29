@@ -1,12 +1,10 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Map from "./Map";
 import { getMeteoritesByDate } from "./meteorites";
 
 const getInitialData = () => {
-  const sortedByDate = getMeteoritesByDate().slice(0, 100);
+  const sortedByDate = getMeteoritesByDate().slice(0, 300);
   const meteoriteSet = sortedByDate.map((entry, i) => {
     return {
       long: entry.reclong,
@@ -14,6 +12,7 @@ const getInitialData = () => {
       name: entry.name,
       id: entry.id,
       year: entry.year,
+      mass: entry.mass,
     };
   });
 
@@ -23,18 +22,21 @@ const getInitialData = () => {
 function App() {
   console.log(getInitialData());
   const [count, setCount] = useState(0);
+  const [selectedMeteorite, setSelectedMeteorite] = useState({});
+
+  const handleOnClick = (data) => {
+    setSelectedMeteorite(data);
+  };
+
   return (
     <>
+      <h1>Meteorite Madness</h1>
+      <Map data={getInitialData()} onClick={handleOnClick} />
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <div>Name: {selectedMeteorite.name}</div>
+        <div>Year: {new Date(selectedMeteorite.year).getFullYear()}</div>
+        <div>Mass: {selectedMeteorite.mass}(g)</div>
       </div>
-      <h1>Vite + React</h1>
-      <Map data={getInitialData()} />
     </>
   );
 }
