@@ -8,7 +8,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
 const getInitialData = () => {
-  const sortedByDate = getMeteoritesByDate().slice(0, 300);
+  const sortedByDate = getMeteoritesByDate().slice(0, 500);
   return sortedByDate;
 };
 
@@ -42,6 +42,7 @@ function App() {
         sx={{
           "& > :not(style)": { m: 1, width: "25ch" },
           display: "flex",
+          alignItems: "center",
         }}
         noValidate
         autoComplete="off"
@@ -74,7 +75,6 @@ function App() {
                 },
               },
             },
-            // Class for the label of the input field
             "& .MuiInputLabel-outlined": {
               fontFamily: "Monaspace Krypton",
               color: "#50fa1d",
@@ -92,6 +92,7 @@ function App() {
             borderRadius: "0px",
             fontFamily: "Monaspace Krypton",
             color: "#242424",
+            maxWidth: "100px",
             "&:hover": {
               background: "#242424",
               border: "2px solid #50fa1d",
@@ -101,13 +102,13 @@ function App() {
         >
           Submit
         </Button>
+        <div className="info-container">
+          <div>Name: {selectedMeteorite.name}</div>
+          <div>Year: {new Date(selectedMeteorite.year).getFullYear()}</div>
+          <div>Mass: {selectedMeteorite.mass}(g)</div>
+        </div>
       </Box>
       <Map data={mapData} onClick={handleOnClick} />
-      <div>
-        <div>Name: {selectedMeteorite.name}</div>
-        <div>Year: {new Date(selectedMeteorite.year).getFullYear()}</div>
-        <div>Mass: {selectedMeteorite.mass}(g)</div>
-      </div>
     </>
   );
 }

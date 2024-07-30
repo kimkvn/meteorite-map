@@ -52,7 +52,6 @@ const Map = (props) => {
 
       circle.events.on("click", function (ev) {
         props.onClick(ev.target.dataItem.dataContext);
-        // alert("Clicked on " + ev.target.dataItem.dataContext.name);
       });
 
       return am5.Bullet.new(root, {
