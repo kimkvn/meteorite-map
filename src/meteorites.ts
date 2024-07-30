@@ -47,7 +47,6 @@ export const getMeteoritesByDate = () => {
 };
 
 const searchMeteoriteByName = (arr, query: string) => {
-  console.log(arr);
   const middleIndex = Math.floor(arr.length / 2);
   const middleVal = arr[middleIndex];
   if (middleVal.name === query) return middleVal;
