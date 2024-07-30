@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.css";
 import MapHeader, { SelectedMeteorite } from "./MapHeader";
 import Map from "./Map";
@@ -28,7 +28,6 @@ function App() {
   };
 
   const handleSearchSubmit = (query: string) => {
-    console.log(query);
     const meteorite = getMeteoriteByName(query);
     setSelectedMeteorite(meteorite);
   };
