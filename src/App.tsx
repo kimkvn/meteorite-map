@@ -1,12 +1,12 @@
 import { useState } from "react";
 import "./App.css";
-import MapHeader, { SelectedMeteorite } from "./MapHeader";
-import Map from "./Map";
+import MapHeader, { SelectedMeteorite } from "./components/MapHeader";
+import Map from "./components/Map";
 import {
   Meteorite,
   getMeteoriteByName,
   getMeteoritesByDate,
-} from "./meteorites";
+} from "./server/meteorites";
 
 const getInitialData = () => {
   const sortedByDate = getMeteoritesByDate();

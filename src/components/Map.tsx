@@ -5,7 +5,7 @@ import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 import * as am5map from "@amcharts/amcharts5/map";
 import am5geodata_worldLow from "@amcharts/amcharts5-geodata/worldLow";
 
-import { Meteorite } from "./meteorites";
+import { Meteorite } from "../server/meteorites";
 interface MapProps {
   data: Meteorite[];
   onClick: () => void;
