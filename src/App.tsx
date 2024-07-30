@@ -1,35 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import MapHeader, { SelectedMeteorite } from "./MapHeader";
+import Map from "./Map";
+import {
+  Meteorite,
+  getMeteoriteByName,
+  getMeteoritesByDate,
+} from "./meteorites";
+
+const getInitialData = () => {
+  const sortedByDate = getMeteoritesByDate();
+  return sortedByDate;
+};
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [mapData, setMapData] = useState(getInitialData());
+  const [selectedMeteorite, setSelectedMeteorite] = useState<SelectedMeteorite>(
+    {
+      name: null,
+      year: null,
+      mass: null,
+    }
+  );
+
+  const handleOnClick = (data: Meteorite) => {
+    setSelectedMeteorite(data);
+  };
+
+  const handleSearchSubmit = (query: string) => {
+    const meteorite = getMeteoriteByName(query);
+    setSelectedMeteorite(meteorite);
+  };
 
   return (
     <>
+      <h1>Mapping Meteorites</h1>
+
+      <MapHeader
+        meteorite={selectedMeteorite}
+        submitSearch={handleSearchSubmit}
+      />
+      <Map data={mapData} onClick={handleOnClick} />
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <p>Use mouse, or pinch/zoom, to move around the map</p>
+        <p>Click on a waypoint to view meteorite information</p>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
