@@ -9,18 +9,7 @@ import Button from "@mui/material/Button";
 
 const getInitialData = () => {
   const sortedByDate = getMeteoritesByDate().slice(0, 300);
-  const meteoriteSet = sortedByDate.map((entry, i) => {
-    return {
-      long: entry.reclong,
-      lat: entry.reclat,
-      name: entry.name,
-      id: entry.id,
-      year: entry.year,
-      mass: entry.mass,
-    };
-  });
-
-  return meteoriteSet;
+  return sortedByDate;
 };
 
 function App() {
@@ -43,7 +32,6 @@ function App() {
   const handleSearchSubmit = () => {
     const meteorite = getMeteoriteByName(searchName);
     setSelectedMeteorite(meteorite);
-    console.log(meteorite);
   };
 
   return (

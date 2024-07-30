@@ -28,6 +28,13 @@ const Map = (props) => {
       })
     );
 
+    polygonSeries.mapPolygons.template.setAll({
+      stroke: am5.color(0xffffff),
+      fill: am5.color(0x50fa1d),
+      strokeWidth: 0.55,
+      fillOpacity: 0.5,
+    });
+
     let pointSeries = chart.series.push(
       am5map.MapPointSeries.new(root, {
         name: "Series",
@@ -37,9 +44,9 @@ const Map = (props) => {
     );
 
     pointSeries.bullets.push(() => {
-      let circle = am5.Circle.new(root, {
-        radius: 5,
-        fill: am5.color(0xff0000),
+      let circle = am5.Star.new(root, {
+        radius: 4,
+        fill: am5.color(0xf5ff6a),
         tooltipText: "{name}",
       });
 

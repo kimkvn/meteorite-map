@@ -6,6 +6,7 @@ interface Meteorite {
   recclass: string;
   mass: string;
   fall: string;
+  year: string;
   reclat?: string;
   reclong?: string;
   geolocation?: {
@@ -23,10 +24,26 @@ const noData = {
   mass: null,
 };
 
+// formats data to be consumed by am5
+export const formatMapData = (data: Meteorite[]) => {
+  return data.map((entry: Meteorite) => {
+    return {
+      long: entry.reclong,
+      lat: entry.reclat,
+      name: entry.name,
+      id: entry.id,
+      year: entry.year,
+      mass: entry.mass,
+    };
+  });
+};
+
 export const getMeteoritesByDate = () => {
-  return data.sort((a, b) => {
+  const sortedData = data.sort((a, b) => {
     return new Date(b.year) - new Date(a.year);
   });
+  const formatted = formatMapData(sortedData);
+  return formatted;
 };
 
 const searchMeteoriteByName = (arr, query: string) => {
