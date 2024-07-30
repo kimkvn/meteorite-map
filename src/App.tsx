@@ -17,9 +17,9 @@ function App() {
   const [mapData, setMapData] = useState(getInitialData());
   const [selectedMeteorite, setSelectedMeteorite] = useState<SelectedMeteorite>(
     {
-      name: "---",
-      year: "---",
-      mass: "---",
+      name: null,
+      year: null,
+      mass: null,
     }
   );
 
@@ -41,6 +41,10 @@ function App() {
         submitSearch={handleSearchSubmit}
       />
       <Map data={mapData} onClick={handleOnClick} />
+      <div>
+        <p>Use mouse, or pinch/zoom, to move around the map</p>
+        <p>Click on a waypoint to view meteorite information</p>
+      </div>
     </>
   );
 }
