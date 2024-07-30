@@ -41,6 +41,7 @@ function App() {
         component="form"
         sx={{
           "& > :not(style)": { m: 1, width: "25ch" },
+          display: "flex",
         }}
         noValidate
         autoComplete="off"
@@ -50,8 +51,54 @@ function App() {
           label="Search By Name"
           variant="outlined"
           onChange={(event) => handleSearch(event.target.value)}
+          sx={{
+            // Root class for the input field
+            "& .MuiOutlinedInput-root": {
+              color: "#50fa1d",
+              fontFamily: "Monaspace Krypton",
+              fontWeight: 400,
+              borderRadius: 0,
+              "& .MuiOutlinedInput-notchedOutline": {
+                borderColor: "#50fa1d",
+                borderWidth: "2px",
+              },
+              "&.Mui-focused": {
+                "& .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "#50fa1d",
+                  borderWidth: "2px",
+                },
+              },
+              "&:hover:not(.Mui-focused)": {
+                "& .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "#ccc",
+                },
+              },
+            },
+            // Class for the label of the input field
+            "& .MuiInputLabel-outlined": {
+              fontFamily: "Monaspace Krypton",
+              color: "#50fa1d",
+              fontWeight: "bold",
+            },
+          }}
         />
-        <Button variant="contained" onClick={handleSearchSubmit}>
+        <Button
+          variant="contained"
+          onClick={handleSearchSubmit}
+          sx={{
+            backgroundColor: "#50fa1d",
+            borderColor: "#50fa1d",
+            borderWidth: "2px",
+            borderRadius: "0px",
+            fontFamily: "Monaspace Krypton",
+            color: "#242424",
+            "&:hover": {
+              background: "#242424",
+              border: "2px solid #50fa1d",
+              color: "#50fa1d",
+            },
+          }}
+        >
           Submit
         </Button>
       </Box>
