@@ -5,7 +5,13 @@ import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 import * as am5map from "@amcharts/amcharts5/map";
 import am5geodata_worldLow from "@amcharts/amcharts5-geodata/worldLow";
 
-const Map = (props) => {
+import { Meteorite } from "./meteorites";
+interface MapProps {
+  data: Meteorite[];
+  onClick: () => void;
+}
+
+const Map = (props: MapProps) => {
   const pointSeriesRef = useRef(null);
 
   useLayoutEffect(() => {
@@ -66,7 +72,6 @@ const Map = (props) => {
     };
   }, []);
 
-  // This code will only run when props.data changes
   useLayoutEffect(() => {
     pointSeriesRef.current.data.setAll(props.data);
   }, [props.data]);

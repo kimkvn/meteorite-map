@@ -1,5 +1,5 @@
 import { data } from "./data";
-interface Meteorite {
+export interface Meteorite {
   name: string;
   id: number;
   nametype: string;
@@ -18,13 +18,13 @@ interface Meteorite {
 const noData = {
   long: null,
   lat: null,
-  name: "N/A",
+  name: "Data not found",
   id: null,
   year: null,
   mass: null,
 };
 
-// formats data to be consumed by am5
+// formats data to be consumed by am charts
 export const formatMapData = (data: Meteorite[]) => {
   return data.map((entry: Meteorite) => {
     return {
