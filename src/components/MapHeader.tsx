@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./App.css";
+import "../App.css";
 
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
